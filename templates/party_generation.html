@@ -1,0 +1,14 @@
+This is where you generate your party, Yo.
+
+<ol>
+    {% for player in party %}
+    <li>
+        <div>
+            name = {{player.name}}
+        </div>
+        <div>
+            class = {{player.class}}
+        </div>
+    </li>
+    {% endfor %}
+</ol>

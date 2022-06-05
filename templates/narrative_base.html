@@ -1,0 +1,12 @@
+<div>{% block narrative %} {% endblock %}</div>
+<hr>
+<div>
+    {% if has_previous_page %}
+    <input type="button" value="Previous Page" onclick="location.href='/narrative/{{previous_page}}'">
+    {% endif %}
+    {% if has_next_page %}
+    <input type="button" value="Next Page" onclick="location.href='/narrative/{{next_page}}'">
+    {% else %}
+    <input type="button" value="Party Creation" onclick="location.href='/party_generation'">
+    {% endif %}
+</div>
