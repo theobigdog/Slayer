@@ -1,0 +1,4 @@
+
+# slayer requirements:
+Flask
+Flask-Session
