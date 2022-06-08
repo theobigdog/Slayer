@@ -2,3 +2,4 @@
 # slayer requirements:
 Flask
 Flask-Session
+Pandas
