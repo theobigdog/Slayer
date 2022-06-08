@@ -1,0 +1,32 @@
+Displayed Party
+
+<ol>
+    {% for player in party %}
+    <li>
+        <div>
+            {{party[player].Name}} - {{party[player].hero_class}}
+        </div>
+        <ol>
+            {% for item in party[player].inv_items %}
+            <li>
+                <div>
+                    {{party[player].inv_items[item].Name}}
+                    {% if party[player].inv_items[item].low < 0 %}
+                    :  {{(-1 * party[player].inv_items[item].low)}} -
+                    {{(-1 * party[player].inv_items[item].high)}} Healing
+                    {% endif %}
+                    {% if party[player].inv_items[item].low == 0 %}
+                    {{' '}}    
+                    {% endif %}
+                    {% if party[player].inv_items[item].low > 0 %}
+                    :  {{party[player].inv_items[item].low}} -
+                    {{party[player].inv_items[item].high}} Damage
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+            <br>
+        </ol>
+    </li>
+    {% endfor %}
+</ol>
