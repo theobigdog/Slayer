@@ -1,4 +1,6 @@
+# pip install -r requirements.txt
 
 # slayer requirements:
 Flask
-Flask-Session
+flask-login
+#Flask-Session
