@@ -6,7 +6,7 @@ print('Initializing slayer app...')
 
 Slayer_Version = 3
 
-SlayerApp = Flask(__name__, static_url_path = '', template_folder = '../templates')
+SlayerApp = Flask(__name__, static_url_path = '', static_folder = '../static_html', template_folder = '../templates')
 
 @SlayerApp.route("/")
 def get_home_page():
