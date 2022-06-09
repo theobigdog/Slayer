@@ -5,6 +5,8 @@ import pandas as pd
 
 print('Initializing party management ...')
 
+hero_classes = ['Warrior', 'Shifter', 'Battle-Mage', 'Hunter', 'Wizard', 'Sapper', 'Cleric']
+
 @SlayerApp.route("/party_choice")
 def party_choice():
     return render_template("party_choice.html")
