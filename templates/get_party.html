@@ -1,13 +1,12 @@
-This is where a saved game is loaded
+<head>
+    <link rel="stylesheet" href="/party_style.css"> 
+</head>
+
+Well, smarty-pants, what is the name of your saved little... group?
 
 <hr>
-<!-- <div>
-    <input type="text" id="filename" name="filename", onclick
-</div> -->
-
-<form>
+<div class="error-text">{{message}}</div>
+<form action="/display_party/" method="POST">
     <input type="text" id="filename" name="filename">
-    <!-- <input type="submit" value="Load that Mo'Fo'" onclick="location.href='/display_party/{{filename}}'"> -->
     <input type="submit" value="Load that Mo'Fo'">
-
 </form>

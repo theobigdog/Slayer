@@ -7,3 +7,8 @@
 .item-row {
   display: flex;
 }
+
+.error-text {
+  color: red;
+  font-size: 24px;
+}
