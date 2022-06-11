@@ -1,0 +1,17 @@
+
+<link rel="stylesheet" href="party_style.css">    
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+
+    {% for category,message in messages %}
+    <div class="flash_message">
+        <span class="{{category}}">{{message}}</span>
+    </div>
+    {% endfor %}
+
+{% endif %}
+{% endwith %}
+
+{% block body %}
+{% endblock %}

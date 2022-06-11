@@ -4,7 +4,10 @@
 </head>
 
 <div>
-    <input type="button" value="Continue" onclick="location.href='/query_update_names'">
+    <form action="/query_update_names" method = "POST">
+        <input type="hidden" name="filename" value="{{filename}}">
+        <input type="submit" value="Continue">
+    </form>
 </div>
 
 <hr>

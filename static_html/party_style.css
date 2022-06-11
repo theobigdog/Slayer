@@ -9,6 +9,23 @@
 }
 
 .error-text {
-  color: red;
+  color: rgb(202, 13, 13);
   font-size: 24px;
+}
+
+.flash_message {
+  display: flex;
+  border: 2px solid rgb(169, 127, 0);
+  border-radius: 5px;
+  padding: 15px;
+  width: 60%;
+  background-color: black;
+  color: rgb(136, 11, 189);
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.flash_message > span {
+  width: 100%;
+  text-align: center;
 }
