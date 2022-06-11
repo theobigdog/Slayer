@@ -1,26 +1,31 @@
+
+<head>
+    <link rel="stylesheet" href="/party_style.css"> 
+</head>
+
 Displayed Party
 
 <ol>
-    {% for player in party %}
+    {% for player_index in party %}
+    {% set player = party[player_index] %}
     <li>
         <div>
-            {{party[player].Name}} - {{party[player].hero_class}}
+            {{player.Name}} - {{player.hero_class}}
         </div>
         <ol>
-            {% for item in party[player].inv_items %}
+            {% for item_index in player.inv_items %}
+            {% set item = player.inv_items[item_index] %}
             <li>
-                <div>
-                    {{party[player].inv_items[item].Name}}
-                    {% if party[player].inv_items[item].low < 0 %}
-                    :  {{(-1 * party[player].inv_items[item].low)}} -
-                    {{(-1 * party[player].inv_items[item].high)}} Healing
+                <div class="item-row">
+                    <span class="item-name">{{item.Name}}</span>
+                    {% if item.low < 0 %}
+                      {{ -1 * item.low }} - {{ -1 * item.high }} Healing
                     {% endif %}
-                    {% if party[player].inv_items[item].low == 0 %}
+                    {% if item.low == 0 %}
                     {{' '}}    
                     {% endif %}
-                    {% if party[player].inv_items[item].low > 0 %}
-                    :  {{party[player].inv_items[item].low}} -
-                    {{party[player].inv_items[item].high}} Damage
+                    {% if item.low > 0 %}
+                      {{item.low}} - {{item.high}} Damage
                     {% endif %}
                 </div>
             </li>

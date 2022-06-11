@@ -1,8 +1,8 @@
 
 from flask import Flask, session, redirect, url_for, escape, render_template
-from flask_login import LoginManager, login_required, UserMixin
+from flask_login import LoginManager, login_required
+from .user_manager import UserManager
 import sys
-import uuid
 
 import flask_login
 # from flask_session import Session
@@ -17,33 +17,11 @@ SlayerApp.secret_key = 'shhhhh this is a secret'
 SlayerLoginManager = LoginManager()
 SlayerLoginManager.init_app(SlayerApp)
 
-class SlayerUser(UserMixin):
-  def __init__(self):
-    self.id = str(uuid.uuid1())
-    self.name = 'user' + str(self.id)
-    self.password = self.name + '_secret'
-
-  def to_json(self):
-    return {"name": self.name, "email": self.email}
-
-  def is_authenticated(self):
-    return True
-
-  def is_active(self):
-    return True
-
-  def is_anonymous(self):
-    return False
-
-  def get_id(self):
-    return str(self.id)
+SlayerUserManager = UserManager()
 
 @SlayerLoginManager.user_loader
 def load_user(user_id):
-  print('Request to load user, ID=')
-  print(user_id)
-  sys.stdout.flush()
-  return None
+  return SlayerUserManager.lookup_user(user_id)
 
 @SlayerApp.route("/")
 def get_home_page():
@@ -53,9 +31,14 @@ def get_home_page():
   print('anonymous: ' + str(flask_login.current_user.is_anonymous))
   print('id: ' + str(flask_login.current_user.get_id()))
 
-  user = SlayerUser()
-  flask_login.login_user(user)
-  print('following login, id is ' + user.get_id())
+  if flask_login.current_user.is_authenticated != True:
+    user = SlayerUserManager.establish_user()
+    print('before login, id is    ' + user.get_id())
+    flask_login.login_user(user)
+    print('following login, id is ' + user.get_id())
+  else:
+    user = flask_login.current_user
+
   print('and id: ' + str(flask_login.current_user.get_id()))
   sys.stdout.flush()
   return render_template('start_page.html', version = Slayer_Version)

@@ -1,0 +1,9 @@
+
+.item-name {
+  font-weight: bold;
+  width: 200px;
+}
+
+.item-row {
+  display: flex;
+}
