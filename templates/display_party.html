@@ -3,7 +3,15 @@
     <link rel="stylesheet" href="/party_style.css"> 
 </head>
 
-Displayed Party
+<div>
+    <form action="/query_update_names" method = "POST">
+        <input type="hidden" name="filename" value="{{filename}}">
+        <input type="submit" value="Continue">
+    </form>
+</div>
+
+<hr>
+Your Happy Little Party:
 
 <ol>
     {% for player_index in party %}
@@ -22,7 +30,7 @@ Displayed Party
                       {{ -1 * item.low }} - {{ -1 * item.high }} Healing
                     {% endif %}
                     {% if item.low == 0 %}
-                    {{' '}}    
+                      {{' '}}    
                     {% endif %}
                     {% if item.low > 0 %}
                       {{item.low}} - {{item.high}} Damage
@@ -35,3 +43,8 @@ Displayed Party
     </li>
     {% endfor %}
 </ol>
+
+<hr>
+<div>
+    <input type="button" value="Continue" onclick="location.href='/query_update_names'">
+</div>
