@@ -12,7 +12,9 @@ class UserManager:
 
   def establish_user(self):
     id = str(uuid.uuid1())
-    name = random.choice(namegenerator.LEFT) + ' ' + random.choice(namegenerator.RIGHT)
+    first_name = random.choice(namegenerator.LEFT).capitalize()
+    last_name = random.choice(namegenerator.RIGHT).capitalize()
+    name = first_name + ' ' + last_name
     user = SlayerUser(id, name)
     self.user_dict[id] = user
     print('Inserting new user with ID=' + id)
