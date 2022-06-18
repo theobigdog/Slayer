@@ -34,7 +34,7 @@ def display_party():
     file_exists = exists(savename)
     if file_exists:
         party = pd.read_json(savename)
-        return render_template("display_party.html", party = party, filename = request.form['filename'])
+        return render_template("display_party.html", party = party, filename = request.form['filename'], bg_img="LoadParty-removebg_b&w_best.png")
     else:
         return redirect('/get_party/File%20Not%20Found')
 

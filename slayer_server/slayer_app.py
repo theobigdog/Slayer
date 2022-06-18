@@ -26,7 +26,7 @@ def load_user(user_id):
 @flask_login.login_required
 def get_home_page():
   flash('Welcome, ' + flask_login.current_user.name + '!  Prepare to Die!')
-  return render_template('start_page.html', version = Slayer_Version)
+  return render_template('start_page.html', version = Slayer_Version, bg_img = "Introduction_b&w_best.jpg")
 
 # Authorize the new user connection.  Check to see if the user is already authorized and if so just
 # redirect.  If not authorized, attempt to perform authorization and register the user upon success.

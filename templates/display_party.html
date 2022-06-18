@@ -1,50 +1,50 @@
+{% extends "main.html" %} {% block body %}
 
-<head>
-    <link rel="stylesheet" href="/party_style.css"> 
-</head>
-
+<style>
+  body {
+    background-position: top right;
+    background-attachment: fixed;
+  }
+</style>
+<div class="fixed_container"><div class="sexy_label">Hot Babes</div></div>
 <div>
-    <form action="/query_update_names" method = "POST">
-        <input type="hidden" name="filename" value="{{filename}}">
-        <input type="submit" value="Continue">
-    </form>
+  <form action="/query_update_names" method="POST">
+    <input type="hidden" name="filename" value="{{filename}}" />
+    <input type="submit" value="Continue" />
+  </form>
 </div>
 
-<hr>
+<hr />
 Your Happy Little Party:
 
 <ol>
-    {% for player_index in party %}
-    {% set player = party[player_index] %}
-    <li>
-        <div>
-            {{player.Name}} - {{player.hero_class}}
+  {% for player_index in party %} {% set player = party[player_index] %}
+  <li>
+    <div>{{player.Name}} - {{player.hero_class}}</div>
+    <ol>
+      {% for item_index in player.inv_items %} {% set item =
+      player.inv_items[item_index] %}
+      <li>
+        <div class="item-row">
+          <span class="item-name">{{item.Name}}</span>
+          {% if item.low < 0 %} {{ -1 * item.low }} - {{ -1 * item.high }}
+          Healing {% endif %} {% if item.low == 0 %} {{' '}} {% endif %} {% if
+          item.low > 0 %} {{item.low}} - {{item.high}} Damage {% endif %}
         </div>
-        <ol>
-            {% for item_index in player.inv_items %}
-            {% set item = player.inv_items[item_index] %}
-            <li>
-                <div class="item-row">
-                    <span class="item-name">{{item.Name}}</span>
-                    {% if item.low < 0 %}
-                      {{ -1 * item.low }} - {{ -1 * item.high }} Healing
-                    {% endif %}
-                    {% if item.low == 0 %}
-                      {{' '}}    
-                    {% endif %}
-                    {% if item.low > 0 %}
-                      {{item.low}} - {{item.high}} Damage
-                    {% endif %}
-                </div>
-            </li>
-            {% endfor %}
-            <br>
-        </ol>
-    </li>
-    {% endfor %}
+      </li>
+      {% endfor %}
+      <br />
+    </ol>
+  </li>
+  {% endfor %}
 </ol>
 
-<hr>
+<hr />
 <div>
-    <input type="button" value="Continue" onclick="location.href='/query_update_names'">
+  <input
+    type="button"
+    value="Continue"
+    onclick="location.href='/query_update_names'"
+  />
 </div>
+{% endblock %}
