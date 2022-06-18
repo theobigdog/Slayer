@@ -10,6 +10,7 @@ print('Initializing slayer app...')
 Slayer_Version = 3
 
 SlayerApp = Flask(__name__, static_url_path = '', static_folder = '../static_html', template_folder = '../templates')
+SlayerApp.config['TEMPLATES_AUTO_RELOAD'] = True
 SlayerApp.secret_key = 'shhhhh this is a secret'
 
 SlayerLoginManager = LoginManager()
