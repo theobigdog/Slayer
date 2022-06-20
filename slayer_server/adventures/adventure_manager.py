@@ -9,7 +9,8 @@ class AdventureManager:
     self.adventure_dict = {}
     for dir in os.listdir(AdventureManager.adventure_dir):
       key = str(dir)
-      self.adventure_dict[key] = Adventure(key, self)
+      home = self.get_adventure_dir(key)
+      self.adventure_dict[key] = Adventure(key, self, home)
 
   def get_adventure_dir(self, key: str) -> str:
     return os.path.join(AdventureManager.adventure_dir, key)

@@ -1,6 +1,7 @@
 
 {% extends "main.html" %}
 {% block body %}
+<div>
 
 This is Slayer Version {{version}}
 
@@ -8,6 +9,7 @@ This is Slayer Version {{version}}
 <div>
     <input type="button" value="Show Narrative" onclick="location.href='/narrative/1'">
     <input type="button" value="Skip Narrative" onclick="location.href='/party_choice'">
+</div>
 </div>
 
 {% endblock %}

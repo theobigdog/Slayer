@@ -9,21 +9,27 @@ class AdvMain:
 
   @property
   def name(self) -> str:
+    print('retrieving the name...')
     return self.__dict__['name']
 
 
 class Adventure:
-  def __init__(self, key, manager) -> None:
+  def __init__(self, key: str, home: str) -> None:
     self.key = key
-    self.home = manager.get_adventure_dir(key)
+    self.home = home
     print('key is ' + key)
     print('dir is ' + self.home)
 
-    f = open(os.path.join(self.home, 'main.json'))
-    self.main = json.load(f, object_hook=lambda d: AdvMain(d))
-    f.close()
+    self.main = self.loadMain()
 
     print('main is ' + str(self.main))
     print('name is ' + self.main.name)
     print('stuff is ' + str(self.main.stuff))
     pass
+
+  def loadMain(self) -> AdvMain:
+    f = open(os.path.join(self.home, 'main.json'))
+    main = json.load(f, object_hook=lambda d: AdvMain(d))
+    f.close()
+
+    return main

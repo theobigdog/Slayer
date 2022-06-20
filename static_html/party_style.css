@@ -1,4 +1,9 @@
 
+body {
+  background-image: url("images/dwarf.jpg");
+  background-position: right;
+  background-repeat: no-repeat;
+}
 .item-name {
   font-weight: bold;
   width: 200px;
