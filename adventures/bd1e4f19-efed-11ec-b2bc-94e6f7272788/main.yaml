@@ -1,0 +1,7 @@
+name: Hidden Gems
+description: |
+  An adventure through a working mine, in search of the 
+  Queen's gems
+rooms:
+  - name: Cave Entrance
+    description: 

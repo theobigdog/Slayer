@@ -1,6 +1,7 @@
 from slayer_server.slayer_files import Slayer_Root
 import os
 import json
+import yaml
 
 class AdvMain:
   def __init__(self, d) -> None:
@@ -24,12 +25,11 @@ class Adventure:
 
     print('main is ' + str(self.main))
     print('name is ' + self.main.name)
-    print('stuff is ' + str(self.main.stuff))
+    print('description is [' + self.main.description + ']')
     pass
 
   def loadMain(self) -> AdvMain:
-    f = open(os.path.join(self.home, 'main.json'))
-    main = json.load(f, object_hook=lambda d: AdvMain(d))
+    f = open(os.path.join(self.home, 'main.yaml'))
+    main = yaml.safe_load(f)
     f.close()
-
-    return main
+    return AdvMain(main)

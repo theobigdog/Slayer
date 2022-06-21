@@ -7,3 +7,4 @@ flask-login
 Pandas
 
 namegenerator
+pyyaml
