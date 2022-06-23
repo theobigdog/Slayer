@@ -2,6 +2,27 @@ name: Hidden Gems
 description: |
   An adventure through a working mine, in search of the 
   Queen's gems
+
+# List of rooms/spaces in the adventure scenario
 rooms:
   - name: Cave Entrance
-    description: 
+    description: |
+      Your party has reached the cave entrance, a gaping hole in the side of an ancient mountain.
+
+    # Portals defines connections to other rooms in the scenario
+    portals:
+      - Main Shaft
+
+    # Items in the room that can potentially be picked up
+    items:
+      - name: item 1
+        # todo: effect on pickup (applies effect to party, angers mobs in room, etc)
+
+    # 
+    triggers:
+      - name: trigger 1
+
+  - name: Main Shaft
+    description: |
+      You have entered the cave and proceeded a short ways into the main shaft.
+      You see many miners bustling about.

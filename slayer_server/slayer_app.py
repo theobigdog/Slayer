@@ -10,7 +10,6 @@ import flask_login
 
 print('Initializing slayer app...')
 Slayer_Version = 3
-print('Slayer root = ' + Slayer_Root)
 
 AdventureManager()
 
