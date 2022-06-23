@@ -1,0 +1,67 @@
+# "static field": data field loaded from a yaml file that an
+#                 item, room, mob, etc starts with
+#
+# "dynamic field": data that is applied while running
+
+# Example: when an item is looted, a new field is applied that
+#          names the mob or room that yielded the item.
+
+- type_id: 497537f0-7175-4723-a3bb-288f6168286a
+  name: A Faded Map
+  description: Directions to the cave that contains the gems
+
+- type_id: 5c36b5cc-a377-410f-beca-5c1ce6bb815f
+  name: Discarded pick
+  description: Broken pick discarded by the miners
+  equipable: true
+  damage: 1d3
+  hit_modifier: -50%  # 50% hit chance reduction.  
+  durability: 5
+  on_break:
+    damage-melee: 1d2  #damage affects player and nearby mob
+    converts_to: 
+      - type_id: 5b472c44-f93a-43ce-8f61-1c47f38509db
+      - type_id: cd69979a-00c5-474e-9583-ea3f72169148
+
+- type_id: 9999999
+  name: Molotov Cocktail
+  description: ...
+  damage-melee: 5d10
+  damage-ranged: 2d8
+  uses: 1
+  rechargeable: false
+
+- type_id: 111111111
+  name: Magic Flash
+  description: Blinding flash of light overwhelms enemies in melee range
+  effect: 5s stun
+  uses: 5
+  cooldown: 2m
+  class-restriction: wizard
+
+- type_id: 5b472c44-f93a-43ce-8f61-1c47f38509db
+  name: Rusty pick head
+  description: the rusty head of a broken pick
+  equipable: false
+
+- type_id: cd69979a-00c5-474e-9583-ea3f72169148
+  name: broken handle
+  description: the handle remains of a broken pick
+  equipable: true:
+  damage: 1d1
+  hit_modifier: -25%  # not as bad as a broken pick!
+  durability: 2
+  chance_on_hit:
+    - apply: Splinters (1 damage and skip next turn to pick out the splinter)
+  on_break:
+    item_destroyed: true
+
+- type_id: c7f2dd9c-1654-468f-b0f1-13b7bfd8997c
+  name: Excalibur
+  description: Probably not the real excalibur
+  equipable: true
+  damage: 5d20
+  chance_on_hit:
+    - apply: shatters into a pile of metal shards.  You being to cry uncontrollably
+
+  # todo: effect on pickup (applies effect to party, angers mobs in room, etc)
