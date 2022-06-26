@@ -61,6 +61,7 @@
   description: Probably not the real excalibur
   equipable: true
   damage: 5d20
+  durability: 100
   chance_on_hit:
     - apply: shatters into a pile of metal shards.  You being to cry uncontrollably
 
