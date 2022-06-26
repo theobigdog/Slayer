@@ -6,62 +6,194 @@
 # Example: when an item is looted, a new field is applied that
 #          names the mob or room that yielded the item.
 
+# By default, all items are equipable
+# By default, hit_modifier = 100%
+# By default, all special items are rechargeable (can be used again in a subsequent encounter)
+# By default, no items are enchanted
+# By default, all items are destroyed when durability runs out
+# No class-restrictions if category not mentioned
+
+# Dice: Must be 4-sided, 6-sided, 8-sided, 10-sided, 12-sided, or 20-sided only
+
+'''
+"Damage Roll" lingo examples:
+1) "3d6" = 3 x six-sided "d"ice rolls, added together
+2) "2d8 + 10" = 2 x eight-sided dice rolls, plus 10
+3) "3d10kh2*2" = 3 x ten-sided dice rolls, but "k"eep only the "h"ighest 2 values, then multiply entire thing by 2
+4) "5d20pl2e<5" = 5 x twenty-sided dice rolls, but dro"p" the "l"owest 2 rolls, and for "e"ach roll less than 5, add another roll (keeping the original roll(s) < 5)
+5) "(4d12ra1)//2" = 4 x twelve-sided dice rolls, "r"eroll and "a"dd a die (once!, and only one die, even if multiple match the subsequent given value) if it has a value of 1,
+      then divide(//, rounded to nearest integer) the entire thing("()") by 2
+6) "4d20ro1mi5 + 3d20ma15" = 4 x twenty-sided dice rolls, reroll "o"nce any(1) die with a value of 1, and all rolls (for this half of the equation only) are a "mi"nimum of 5 (anything lower is rounded up to 5),
+      then add 3 x twenty-sided dice rolls, all with a "ma"ximum of 15 (anything higher is rounded down to 15)
+7) "(2d8kh1, 7, 3d6kl2)kh1" = keep the highest 1 of:
+      A) 2 x eight-sided dice rolls, keeping only the highest 1
+      B) 7
+      C) 3 x six-sided dice rolls, keeping the lowest 2 only
+'''
+
+
 - type_id: 497537f0-7175-4723-a3bb-288f6168286a
   name: A Faded Map
   description: Directions to the cave that contains the gems
+  equipable: false
 
 - type_id: 5c36b5cc-a377-410f-beca-5c1ce6bb815f
-  name: Discarded pick
+  name: Discarded Pick
   description: Broken pick discarded by the miners
-  equipable: true
   damage: 1d3
   hit_modifier: -50%  # 50% hit chance reduction.  
   durability: 5
   on_break:
-    damage-melee: 1d2  #damage affects player and nearby mob
+    damage_melee: 1d2  #damage affects player and nearby mob
     converts_to: 
-      - type_id: 5b472c44-f93a-43ce-8f61-1c47f38509db
-      - type_id: cd69979a-00c5-474e-9583-ea3f72169148
+      - type_id: 5b472c44-f93a-43ce-8f61-1c47f38509db # Rusty Pick Head
+      - type_id: cd69979a-00c5-474e-9583-ea3f72169148 # Broken Handle
 
 - type_id: 9999999
   name: Molotov Cocktail
   description: ...
-  damage-melee: 5d10
-  damage-ranged: 2d8
+  damage_melee: (5d10, 30)kl1
+  damage_ranged: (2d8, 9)kh1
   uses: 1
-  rechargeable: false
+  rechargeable: false # if false, only 1x use per encounter
 
 - type_id: 111111111
   name: Magic Flash
   description: Blinding flash of light overwhelms enemies in melee range
   effect: 5s stun
-  uses: 5
+  uses: 5 # cumulative across all encounters
   cooldown: 2m
-  class-restriction: wizard
+  rechargeable: false
+  class_restriction: [wizard]
 
 - type_id: 5b472c44-f93a-43ce-8f61-1c47f38509db
-  name: Rusty pick head
-  description: the rusty head of a broken pick
+  name: Rusty Pick Head
+  description: The rusty head of a broken pick
   equipable: false
 
 - type_id: cd69979a-00c5-474e-9583-ea3f72169148
-  name: broken handle
-  description: the handle remains of a broken pick
-  equipable: true:
-  damage: 1d1
+  name: Broken Handle
+  description: The handle remains of a broken pick
+  damage: 1
   hit_modifier: -25%  # not as bad as a broken pick!
   durability: 2
   chance_on_hit:
-    - apply: Splinters (1 damage and skip next turn to pick out the splinter)
+    - apply: Splinters (1 damage and skip next turn to pick out the splinter) # Damages wielding player
   on_break:
-    item_destroyed: true
+    damage_melee: 1
 
 - type_id: c7f2dd9c-1654-468f-b0f1-13b7bfd8997c
   name: Excalibur
   description: Probably not the real excalibur
-  equipable: true
-  damage: 5d20
+  damage: (5d20kh4mi5e10, 55)kh1
+  enchantment: hemorrhage V
+    damage: 3d8kh2
+    duration: 3 turns
+  hit_modifier: 150%
+  durability: 5
+  rechargeable: false
   chance_on_hit:
-    - apply: shatters into a pile of metal shards.  You being to cry uncontrollably
+    - apply: "Adamantium" shrapnel - Shatters into a spray of metal shards.  %player begins to cry uncontrollably.
+  on_break:
+    damage_melee: 2d10
+    converts_to:
+      - type_id: db171590-69ba-491e-b875-204621088714 # Baby Boy
+      - type_id: e42edc53-fde9-436c-a045-7be7d5cf38e2 # Double-Edged Blade
+  class_restriction: [warrior]
+
+- type_id: db171590-69ba-491e-b875-204621088714
+  name: Baby Boy
+  description: You shouldn't play with toys
+  damage: 3d20e10kh2mi5
+  enchantment: hemorrhage III
+    damage: 2d6mi3
+    duration: 2 turns
+  durability: 7
+  class_restriction: [warrior, wizard, sapper]
+  
+-type_id: e42edc53-fde9-436c-a045-7be7d5cf38e2
+  name: Bo-shuriken
+  description:  Better be careful with that...
+  damage: 3d8mi4
+  enchantments: 2
+    enchantment: thorns
+      damage_melee: 2d4
+    enchantment: hemorrhage II
+      damage: 2d4
+      duration: 1 turn
+  durability: 3
+  class_restriction: [warrior, battle-mage]
+
+- type_id: a3952399-e11c-40e2-ac25-dfeea5f0e980
+  name: Broken Bottle
+  description:  It's broken - and freakin' sharp AF
+  damage: (4d8kh3ro<3, 20, 2d10e<5)kl1
+  enchantment: Keeper Killer
+    applies_to: <final boss only>
+      effect: brings boss to, maximum, 50% max health
+      enchantment: hemophilia  # Not sure if this one is legal
+        description: cannot heal above 50% max
+      - apply: Glass shatters (1-5 damage and skip next turn to wrap hand in a bandage)
+  uses: 3
+  chance_on_hit:
+    - apply: Glass shatters (1-5 damage and skip next turn to wrap hand in a bandage)
+  on_break:
+    damage_melee: 1d6ma5
+
+- type_id: b00af5b7-9654-48c7-b2fe-e02861668dc7
+  name: Thor's Hammer
+  description: A lightning-charged gift from the gods
+  damage: (2d20ro<10, 15, 4d12kh2)kh1
+  enchantments: 3
+    enchantment: Lightning Strike II
+      damage: 2d6
+    enchantment: Trueshot II
+      hit_modifier: 200%
+    enchantment: Dead Weight
+      effect: once used, cannot wield again for the rest of the encounter
+  durability: 10
+  on_break:
+    damage_melee: 1d12mi4 # lightning discharge damage
+  class_restriction: [warrior]
+
+- type_id: e70f6c21-4983-4023-9270-c318605ae3bb
+  name: Mantis-Shrimp Punch
+  description: Stronger than an upper-cut from Chuck Norris
+  damage: 4d12kh3mi6
+  hit_modifier: -15%
+  durability: infinite
+  class_restriction: [shifter]
+
+- type_id: 88102f38-134e-468e-938d-dabfbcc2ab34
+  name: Body-slam
+  description: Exactly what it sounds like
+  damage: 2d6
+  durability: infinite
+  class_restriction: [warrior, battle-mage]
+
+- type_id: f9b09795-88b4-4a56-8e8a-d9c2942bc4b4
+  name: Hands of Apollo
+  description: An almost blinding light, descending from the heavens
+  healing: 3d12mi6
+  enchantments: 2
+    enchantment: Trueshot III
+      hit_modifier: 300%
+    enchantment: AOE
+      effect: multiple heroes healed
+      melee_effect: Weakness II # for 2 turns, spell-strength is halved
+  durability: 10
+  class_restriction: [cleric]
+
+- type_id: 33abb8c1-675b-44ca-8dc5-11c1ad3b54ad
+  name: Bless
+  description: A solemn prayer to heal the wounded
+  healing: 2d6
+  durability: infinite
+  class_restriction: [cleric]
+
+
+
+
+
 
   # todo: effect on pickup (applies effect to party, angers mobs in room, etc)
