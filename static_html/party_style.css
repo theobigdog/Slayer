@@ -9,6 +9,10 @@ h2 {
   font-size: 28px;
 }
 
+body {
+  background-position: right;
+  background-repeat: no-repeat;
+}
 .item-name {
   font-weight: bold;
   width: 200px;

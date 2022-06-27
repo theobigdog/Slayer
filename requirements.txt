@@ -6,4 +6,6 @@ flask-login
 #Flask-Session
 Pandas
 
+d20
 namegenerator
+pyyaml

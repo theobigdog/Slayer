@@ -1,0 +1,71 @@
+name: Ruxpin's Adventer!
+description: |
+  Describe your adventure here!
+
+# - any items that are provided 
+# - all items are soulbound
+# - players start with at least their starting items when
+#   they enter a new adventure
+items:
+  # reference to the item type for the adventure
+  - type_id: 497537f0-7175-4723-a3bb-288f6168286a
+    count: 1
+
+narrative: |
+  Here is where the narrative would go
+
+# - all players start off alive
+initial_events:
+  # - apply buff/debuff
+  # - allow for random events - "oops you bumped into something"
+
+
+# List of rooms/spaces in the adventure scenario
+rooms:
+  - name: Cave Entrance
+    description: |
+      Your party has reached the cave entrance, a gaping hole in the side of an ancient mountain.
+
+    # Portals defines connections to other rooms in the scenario
+    portals:
+      - name: Main Shaft
+        event: 
+          death_chance: 10%
+
+      - name: Rickety Ladder
+        event:
+          # One time use.  After that, the portal is removed
+          # from this room and players will no longer be able
+          # to go this way.
+          portal_breaks: 100
+          text: The ladder breaks as the last party member descends.
+                You aren't going back up that way!
+
+    # Items in the room that can potentially be picked up
+    items:
+      - type_id: 5c36b5cc-a377-410f-beca-5c1ce6bb815f
+        count: 3
+
+    # List of mobs that are guaranteed to be in the room
+    mobs:
+      - type_id: b1aa2be8-746b-4df2-ae4d-c2bb4d153d35
+        count: 1
+
+    # List of events
+    events:
+      - name: Floor gives out
+        action: Send party to "Death Trap"
+
+  - name: Main Shaft
+    description: |
+      You have entered the cave and proceeded a short ways into the main shaft.
+      You see many miners bustling about.
+
+  - name: Death Trap
+    description: |
+      THe floor gave out and your entire party sadly fell
+      to their deaths.  Sucks to be you!
+
+    events:
+      - name: Sudden Death!
+        action: party wipe

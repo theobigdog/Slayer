@@ -1,0 +1,49 @@
+
+- type_id: b1aa2be8-746b-4df2-ae4d-c2bb4d153d35
+  name: Miner Foreman
+  description: This man leads the miners in their mission to find gems
+  attributes:
+    strength: 80 + 1d20
+    agility: 6 + 2d8
+    intellect: 5d4
+    health: 50 + 3d20
+  inventory:
+    # - inventory items need to have a 'use' field that says if the mob will use it
+    # - mobs may have 2 versions of an item:
+    #   - one version that they use
+    #   - another version that they drop.  Can have different stats/abilities
+    - type_id: 12345
+      drop_chance: 5   # percentage chance of the item dropping
+  abilities:
+    - name: Rude Gesture
+      # substitution: %target is replaced with the name of target of the ability
+      description: The foreman makes a rude gesture at %target
+    - name: Mock
+      description: %target, You look like crap!
+      # 
+      triggered_by: %target{%health} < 50%
+    - name: Mighty Blow
+      description: Swings a might blow at %target
+      damage_modifier_percent: 200   # percentage modifier; adjusted = damage * (damage_modifier / 100)
+      damage_modifier_fixed: 20   # flat fixed adjustment
+      hit_chance_modifier: 100
+      odds_of_use: 15  # 15% chance the ability will be used
+      triggered_by:  # describe event that will trigger the ability
+    - name: Enrage
+      triggered_by: %health <= 25%
+      apply_aura:
+        name: Enrage
+        time: 30s
+        damage_modifier_percent: 500
+        hit_chance_modifier: 25
+
+# Mob ability:
+# - stealing from players
+#   - tracks which player it was stolen from
+#   - depending on the mob, the player may be able to get the item back
+#
+# - enrage ability (triggered)
+#   - Action = apply buff (boosted damage modifier, crit,
+#       decereased hit, maybe increased damage taken, etc)
+#
+# 
