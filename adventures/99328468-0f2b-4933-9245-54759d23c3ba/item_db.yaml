@@ -15,7 +15,7 @@
 # By default, mob_use is false (use refers to whether the mob uses the item, or just drops it)
 # No class-restrictions if category not mentioned
 
-# Dice: Must be 4-sided, 6-sided, 8-sided, 10-sided, 12-sided, or 20-sided only
+# Dice: Must be 4-sided, 6-sided, 8-sided, 10-sided, 12-sided, or 20-sided only.  While it is technically possible to have other options, I will murder you in your sleep if you try any others.
 
 '''
 "Damage Roll" lingo examples:
