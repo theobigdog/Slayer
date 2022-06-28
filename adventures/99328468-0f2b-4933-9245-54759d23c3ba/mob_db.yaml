@@ -1,4 +1,3 @@
-
 - type_id: b1aa2be8-746b-4df2-ae4d-c2bb4d153d35
   name: Miner Foreman
   description: This man leads the miners in their mission to find gems
@@ -13,22 +12,22 @@
     #   - one version that they use
     #   - another version that they drop.  Can have different stats/abilities
     - type_id: 12345
-      drop_chance: 5   # percentage chance of the item dropping
+      drop_chance: 5 # percentage chance of the item dropping
   abilities:
     - name: Rude Gesture
       # substitution: %target is replaced with the name of target of the ability
       description: The foreman makes a rude gesture at %target
     - name: Mock
       description: %target, You look like crap!
-      # 
+      #
       triggered_by: %target{%health} < 50%
     - name: Mighty Blow
       description: Swings a might blow at %target
-      damage_modifier_percent: 200   # percentage modifier; adjusted = damage * (damage_modifier / 100)
-      damage_modifier_fixed: 20   # flat fixed adjustment
+      damage_modifier_percent: 200 # percentage modifier; adjusted = damage * (damage_modifier / 100)
+      damage_modifier_fixed: 20 # flat fixed adjustment
       hit_chance_modifier: 100
-      odds_of_use: 15  # 15% chance the ability will be used
-      triggered_by:  # describe event that will trigger the ability
+      odds_of_use: 15 # 15% chance the ability will be used
+      triggered_by: # describe event that will trigger the ability
     - name: Enrage
       triggered_by: %health <= 25%
       apply_aura:
@@ -37,6 +36,48 @@
         damage_modifier_percent: 500
         hit_chance_modifier: 25
 
+- type_id: 9e0b2c60-e867-4790-9fc8-78b6193bc0be
+  name: Happy, the Disgruntled Dwarf
+  description: Happy runs the Dzerritain Tavern as front, but is actually the guardian of the entrance to this dungeon
+  attributes:
+    strength: 80 + 2d20
+    agility: 20 + 2d10
+    intellect: 5d10
+    health: 500 + 3d20
+  inventory:
+    # - inventory items need to have a 'use' field that says if the mob will use it
+    # - mobs may have 2 versions of an item:
+    #   - one version that they use
+    #   - another version that they drop.  Can have different stats/abilities
+    - type_id: a3952399-e11c-40e2-ac25-dfeea5f0e980 # Broken Bottle
+      drop_chance: 25 # percentage chance of the item dropping
+  abilities:
+    - name: Vomit AOE
+      # substitution: %target is replaced with the name of target of the ability
+      description: Happy turns pale green, almost immediately vomiting across all members of the party
+      aoe: True
+      damage_modifier_percent: 150
+      damage_modifier_fixd: 10
+      odds_of_use: 15 # % chance
+    - name: Mock
+      description: %target, You look like crap!
+      #
+      triggered_by: %target{%health} < 50%
+    - name: Mighty Blow
+      description: Swings a might blow at %target
+      damage_modifier_percent: 200 # percentage modifier; adjusted = damage * (damage_modifier / 100)
+      damage_modifier_fixed: 20 # flat fixed adjustment
+      hit_chance_modifier: 100
+      odds_of_use: 15 # 15% chance the ability will be used
+      triggered_by: # describe event that will trigger the ability
+    - name: Enrage
+      triggered_by: %health <= 25%
+      apply_aura:
+        name: Enrage
+        time: 30s
+        damage_modifier_percent: 500
+        hit_chance_modifier: 25
+      health: health * 2 + 5d20
 # Mob ability:
 # - stealing from players
 #   - tracks which player it was stolen from
@@ -46,4 +87,4 @@
 #   - Action = apply buff (boosted damage modifier, crit,
 #       decereased hit, maybe increased damage taken, etc)
 #
-# 
+#
