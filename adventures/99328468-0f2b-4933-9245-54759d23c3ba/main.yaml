@@ -1,4 +1,3 @@
-- type_id: dc68a32e-c615-4c96-b0cb-b23e3704e53f
   name: Ruxpin's Adventure!
 
   difficulty: "easy"
@@ -17,11 +16,11 @@
 
   narrative: |
     Good job getting to this point.  We're awfully proud of you!
-  # click
+    <pause>
     Now that you're ready, your journey begins in the town of Seringia, where your party has assembled.  After a few minutes of, at times, heated debate, %lead_hero.name is deemed as the best fit to be your party's leader.
 
     Having settled that little dispute, %random_hero produces a faded map, showing the approximate location of the Dzerritain Tavern, located on the periphery of the Dzerritain mountains, the best lead you have for finding an abundance of wealth, in addition to the opportunity to increase your fame across all the lands.
-  # click
+    <pause>
     blah blah blah, continued narrative
 
 
@@ -46,14 +45,14 @@
             portal_breaks: 100
             text:  As the final hero exits the corridor, she pats the wall.  Immediately, a horrible crack is heard, followed by an avalanche of dirt, rocks and debris filling the corridor behind her.  Hopefully there is another exit!
 
-        '''- name: Rickety Ladder
+        - name: Rickety Ladder
           event:
             # One time use.  After that, the portal is removed
             # from this room and players will no longer be able
             # to go this way.
             portal_breaks: 100
             text: The ladder breaks as the last party member descends.
-              You aren't going back up that way!'''
+              You aren't going back up that way!
 
       # Items in the room that can potentially be picked up
       items:
