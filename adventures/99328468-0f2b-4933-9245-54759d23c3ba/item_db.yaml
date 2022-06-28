@@ -11,6 +11,8 @@
 # By default, all special items are rechargeable (can be used again in a subsequent encounter)
 # By default, no items are enchanted
 # By default, all items are destroyed when durability runs out
+# By default, starting_item = false
+# By default, mob_use is false (use refers to whether the mob uses the item, or just drops it)
 # No class-restrictions if category not mentioned
 
 # Dice: Must be 4-sided, 6-sided, 8-sided, 10-sided, 12-sided, or 20-sided only
@@ -128,6 +130,7 @@
   name: Broken Bottle
   description:  It's broken - and freakin' sharp AF
   damage: (4d8kh3ro<3, 20, 2d10e<5)kl1
+  mob_use: True
   enchantment: Keeper Killer
     applies_to: <final boss only>
       effect: brings boss to, maximum, 50% max health
@@ -143,6 +146,7 @@
 - type_id: b00af5b7-9654-48c7-b2fe-e02861668dc7
   name: Thor's Hammer
   description: A lightning-charged gift from the gods
+  starting_item: True
   damage: (2d20ro<10, 15, 4d12kh2)kh1
   enchantments: 3
     enchantment: Lightning Strike II
@@ -159,6 +163,7 @@
 - type_id: e70f6c21-4983-4023-9270-c318605ae3bb
   name: Mantis-Shrimp Punch
   description: Stronger than an upper-cut from Chuck Norris
+  starting_item: True
   damage: 4d12kh3mi6
   hit_modifier: -15%
   durability: infinite
@@ -174,6 +179,7 @@
 - type_id: f9b09795-88b4-4a56-8e8a-d9c2942bc4b4
   name: Hands of Apollo
   description: An almost blinding light, descending from the heavens
+  starting_item: True
   healing: 3d12mi6
   enchantments: 2
     enchantment: Trueshot III
@@ -187,6 +193,7 @@
 - type_id: 33abb8c1-675b-44ca-8dc5-11c1ad3b54ad
   name: Bless
   description: A solemn prayer to heal the wounded
+  starting_item: True
   healing: 2d6
   durability: infinite
   class_restriction: [cleric]
