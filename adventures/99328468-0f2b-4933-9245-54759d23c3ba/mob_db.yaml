@@ -18,9 +18,9 @@
       # substitution: %target is replaced with the name of target of the ability
       description: The foreman makes a rude gesture at %target
     - name: Mock
-      description: %target, You look like crap!
+      description: '%target, You look like crap!'
       #
-      triggered_by: %target{%health} < 50%
+      triggered_by: '%target{%health} < 50%'
     - name: Mighty Blow
       description: Swings a might blow at %target
       damage_modifier_percent: 200 # percentage modifier; adjusted = damage * (damage_modifier / 100)
@@ -29,7 +29,7 @@
       odds_of_use: 15 # 15% chance the ability will be used
       triggered_by: # describe event that will trigger the ability
     - name: Enrage
-      triggered_by: %health <= 25%
+      triggered_by: '%health <= 25%'
       apply_aura:
         name: Enrage
         time: 30s
@@ -60,9 +60,9 @@
       damage_modifier_fixd: 10
       odds_of_use: 15 # % chance
     - name: Mock
-      description: %target, You look like crap!
+      description: '%target, You look like crap!'
       #
-      triggered_by: %target{%health} < 50%
+      triggered_by: '%target{%health} < 50%'
     - name: Mighty Blow
       description: Swings a might blow at %target
       damage_modifier_percent: 200 # percentage modifier; adjusted = damage * (damage_modifier / 100)
@@ -71,7 +71,7 @@
       odds_of_use: 15 # 15% chance the ability will be used
       triggered_by: # describe event that will trigger the ability
     - name: Enrage
-      triggered_by: %health <= 25%
+      triggered_by: '%health <= 25%'
       apply_aura:
         name: Enrage
         time: 30s

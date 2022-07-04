@@ -1,7 +1,4 @@
 
-import os
-import yaml
-
 from slayer_server.adventures.util import AdventureUtil
 
 class AdventureItems:

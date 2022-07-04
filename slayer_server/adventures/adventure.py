@@ -1,9 +1,7 @@
-from io import TextIOWrapper
-from slayer_server.adventures.adventer_items import AdventureItems
+from slayer_server.adventures.items import AdventureItems
+from slayer_server.adventures.mobs import AdventureMobs
 from slayer_server.adventures.util import AdventureUtil
 from slayer_server.slayer_files import Slayer_Root
-import os
-import yaml
 
 class Room:
   def __init__(self, d) -> None:
@@ -39,6 +37,7 @@ class Adventure:
     self.key = key
     self.home = home
     self.itemdb = AdventureItems(home)
+    self.mob_db = AdventureMobs(home)
 
     self.main = self.load()
 
