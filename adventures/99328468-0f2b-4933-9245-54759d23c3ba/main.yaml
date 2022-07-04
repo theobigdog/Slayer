@@ -1,84 +1,83 @@
-  name: Ruxpin's Adventure!
+name: Ruxpin's Adventure!
 
-  difficulty: "easy"
+difficulty: "easy"
 
-  description: |
-    This is intended to be the first instance/dungeon the party faces.  It takes the party through a twisting of both "traditional" and "non-traditional" settings and mobs.  Interactions begin in the infamous Dzerritain tavern...
+description: |
+  This is intended to be the first instance/dungeon the party faces.  It takes the party through a twisting of both "traditional" and "non-traditional" settings and mobs.  Interactions begin in the infamous Dzerritain tavern...
 
-  # - any items that are provided
-  # - all items are soulbound
-  # - players start with at least their starting items when
-  #   they enter a new adventure
-  items:
-    # reference to the item type for the adventure
-    - type_id: 497537f0-7175-4723-a3bb-288f6168286a # A faded map
-      count: 1
+# - any items that are provided
+# - all items are soulbound
+# - players start with at least their starting items when
+#   they enter a new adventure
+items:
+  # reference to the item type for the adventure
+  - type_id: 497537f0-7175-4723-a3bb-288f6168286a # A faded map
+    count: 1
 
-  narrative: |
-    Good job getting to this point.  We're awfully proud of you!
-    <pause>
-    Now that you're ready, your journey begins in the town of Seringia, where your party has assembled.  After a few minutes of, at times, heated debate, %lead_hero.name is deemed as the best fit to be your party's leader.
+narrative: |
+  Good job getting to this point.  We're awfully proud of you!
+  <pause>
+  Now that you're ready, your journey begins in the town of Seringia, where your party has assembled.  After a few minutes of, at times, heated debate, %lead_hero.name is deemed as the best fit to be your party's leader.
 
-    Having settled that little dispute, %random_hero produces a faded map, showing the approximate location of the Dzerritain Tavern, located on the periphery of the Dzerritain mountains, the best lead you have for finding an abundance of wealth, in addition to the opportunity to increase your fame across all the lands.
-    <pause>
-    blah blah blah, continued narrative
+  Having settled that little dispute, %random_hero produces a faded map, showing the approximate location of the Dzerritain Tavern, located on the periphery of the Dzerritain mountains, the best lead you have for finding an abundance of wealth, in addition to the opportunity to increase your fame across all the lands.
+  <pause>
+  blah blah blah, continued narrative
 
+# - all players start off alive
+initial_events:
+  # - apply buff/debuff
+  # - allow for random events - "oops you bumped into something"
+  revive: Any dead heroes from previous runs are revived
+  inv_default_check: All inventories are checked, and any missing "class-default" items are restored, with durabilities of all other items restored to initial levels
 
-  # - all players start off alive
-  initial_events:
-    # - apply buff/debuff
-    # - allow for random events - "oops you bumped into something"
-    revive: Any dead heroes from previous runs are revived
-    inv_default_check:  All inventories are checked, and any missing "class-default" items are restored, with durabilities of all other items restored to initial levels
+# List of rooms/spaces in the adventure scenario
+rooms:
+  - name: Dzerritain Tavern
+    description: |
+      Your party has reached Dzerritain Tavern, a real hole-in-the-wall, tucked into the foot of Dzerritain's infamous, deadly mountain range.  Upon entry, it is immediately apparent, and suspicious, that there are almost no other travelers in the main room.  Solely an aging, hefty dwarf sleeps in his chair, snoring loudly, as he leans against a wall, just adjacent to a blazing fireplace.  As there are no observable proprietors, nor guests to interrogate, %lead_hero.name saunters over, clearly making enough noise on her way, to wake the sleeping dwarf.  When she reaches the still-sleeping patron, she extends an arm to poke him in the shoulder, beginning to speak, "Hey! we're looking for...".  But before she makes contact, a lightning-quick grab, followed by an even faster leg-sweep, finds %lead_hero.name on the groud, staring at the ceiling.  %random_hero.name begins to snicker, but her chuckle is cut short, as another blurred movement from the dwarf results in %random_hero.name pinned through her loincloth, into the wall behind her, by an evil-looking throwing knife.  "Oh fff..." she mumbles as she unsuccessfully attempts to detach from both wall and blade.  Well, this situation got nasty quickly, now didn't it...
 
-  # List of rooms/spaces in the adventure scenario
-  rooms:
-    - name: Dzerritain Tavern
-      description: |
-        Your party has reached Dzerritain Tavern, a real hole-in-the-wall, tucked into the foot of Dzerritain's infamous, deadly mountain range.  Upon entry, it is immediately apparent, and suspicious, that there are almost no other travelers in the main room.  Solely an aging, hefty dwarf sleeps in his chair, snoring loudly, as he leans against a wall, just adjacent to a blazing fireplace.  As there are no observable proprietors, nor guests to interrogate, %lead_hero.name saunters over, clearly making enough noise on her way, to wake the sleeping dwarf.  When she reaches the still-sleeping patron, she extends an arm to poke him in the shoulder, beginning to speak, "Hey! we're looking for...".  But before she makes contact, a lightning-quick grab, followed by an even faster leg-sweep, finds %lead_hero.name on the groud, staring at the ceiling.  %random_hero.name begins to snicker, but her chuckle is cut short, as another blurred movement from the dwarf results in %random_hero.name pinned through her loincloth, into the wall behind her, by an evil-looking throwing knife.  "Oh fff..." she mumbles as she unsuccessfully attempts to detach from both wall and blade.  Well, this situation got nasty quickly, now didn't it...
+    # Portals defines connections to other rooms in the scenario
+    portals:
+      - name: Hidden Corridor
+        event:
+          death_chance: 0%
+          portal_breaks: 100
+          text: As the final hero exits the corridor, she pats the wall.  Immediately, a horrible crack is heard, followed by an avalanche of dirt, rocks and debris filling the corridor behind her.  Nice job...  Hopefully there is another exit!
 
-      # Portals defines connections to other rooms in the scenario
-      portals:
-        - name: Hidden Corridor
-          event:
-            death_chance: 0%
-            portal_breaks: 100
-            text:  As the final hero exits the corridor, she pats the wall.  Immediately, a horrible crack is heard, followed by an avalanche of dirt, rocks and debris filling the corridor behind her.  Hopefully there is another exit!
+      - name: Rickety Ladder
+        event:
+          # One time use.  After that, the portal is removed
+          # from this room and players will no longer be able
+          # to go this way.
+          portal_breaks: 100
+          text: The ladder breaks as the last party member descends.
+            You aren't going back up that way!
 
-        - name: Rickety Ladder
-          event:
-            # One time use.  After that, the portal is removed
-            # from this room and players will no longer be able
-            # to go this way.
-            portal_breaks: 100
-            text: The ladder breaks as the last party member descends.
-              You aren't going back up that way!
+    # Items in the room that can potentially be picked up
+    items:
+      - type_id: 5c36b5cc-a377-410f-beca-5c1ce6bb815f
+        count: 3
 
-      # Items in the room that can potentially be picked up
-      items:
-        - type_id: 5c36b5cc-a377-410f-beca-5c1ce6bb815f
-          count: 3
+    # List of mobs that are guaranteed to be in the room
+    mobs:
+      - type_id: 9e0b2c60-e867-4790-9fc8-78b6193bc0be # Happy
+        count: 1
 
-      # List of mobs that are guaranteed to be in the room
-      mobs:
-        - type_id: 9e0b2c60-e867-4790-9fc8-78b6193bc0be
-          count: 1
+    # List of events
+    events:
+      - name: Floor gives out
+        action: Send party to "Death Trap"
 
-      # List of events
-      events:
-        - name: Floor gives out
-          action: Send party to "Death Trap"
+  - name: Main Shaft
+    description: |
+      You have entered the cave and proceeded a short ways into the main shaft.
+      You see many miners bustling about.
 
-    - name: Main Shaft
-      description: |
-        You have entered the cave and proceeded a short ways into the main shaft.
-        You see many miners bustling about.
+  - name: Death Trap
+    description: |
+      THe floor gave out and your entire party sadly fell
+      to their deaths.  Sucks to be you!
 
-    - name: Death Trap
-      description: |
-        THe floor gave out and your entire party sadly fell
-        to their deaths.  Sucks to be you!
-
-      events:
-        - name: Sudden Death!
-          action: party wipe
+    events:
+      - name: Sudden Death!
+        action: party wipe

@@ -17,21 +17,20 @@
 
 # Dice: Must be 4-sided, 6-sided, 8-sided, 10-sided, 12-sided, or 20-sided only.  While it is technically possible to have other options, I will murder you in your sleep if you try any others.
 
-'''
-"Damage Roll" lingo examples:
-1) "3d6" = 3 x six-sided "d"ice rolls, added together
-2) "2d8 + 10" = 2 x eight-sided dice rolls, plus 10
-3) "3d10kh2*2" = 3 x ten-sided dice rolls, but "k"eep only the "h"ighest 2 values, then multiply entire thing by 2
-4) "5d20pl2e<5" = 5 x twenty-sided dice rolls, but dro"p" the "l"owest 2 rolls, and for "e"ach roll less than 5, add another roll (keeping the original roll(s) < 5)
-5) "(4d12ra1)//2" = 4 x twelve-sided dice rolls, "r"eroll and "a"dd a die (once!, and only one die, even if multiple match the subsequent given value) if it has a value of 1,
-      then divide(//, rounded to nearest integer) the entire thing("()") by 2
-6) "4d20ro1mi5 + 3d20ma15" = 4 x twenty-sided dice rolls, reroll "o"nce any(1) die with a value of 1, and all rolls (for this half of the equation only) are a "mi"nimum of 5 (anything lower is rounded up to 5),
-      then add 3 x twenty-sided dice rolls, all with a "ma"ximum of 15 (anything higher is rounded down to 15)
-7) "(2d8kh1, 7, 3d6kl2)kh1" = keep the highest 1 of:
-      A) 2 x eight-sided dice rolls, keeping only the highest 1
-      B) 7
-      C) 3 x six-sided dice rolls, keeping the lowest 2 only
-'''
+#"Damage Roll" lingo examples:
+#1) "3d6" = 3 x six-sided "d"ice rolls, added together
+#2) "2d8 + 10" = 2 x eight-sided dice rolls, plus 10
+#3) "3d10kh2*2" = 3 x ten-sided dice rolls, but "k"eep only the "h"ighest 2 values, then multiply entire thing by 2
+#4) "5d20pl2e<5" = 5 x twenty-sided dice rolls, but dro"p" the "l"owest 2 rolls, and for "e"ach roll less than 5, add another roll (keeping the original roll(s) < 5)
+#5) "(4d12ra1)//2" = 4 x twelve-sided dice rolls, "r"eroll and "a"dd a die (once!, and only one die, even if multiple match the subsequent given value) if it has a value of 1,
+#      then divide(//, rounded to nearest integer) the entire thing("()") by 2
+#6) "4d20ro1mi5 + 3d20ma15" = 4 x twenty-sided dice rolls, reroll "o"nce any(1) die with a value of 1, and all rolls (for this half of the equation only) are a "mi"nimum of 5 (anything lower is rounded up to 5),
+#
+#      then add 3 x twenty-sided dice rolls, all with a "ma"ximum of 15 (anything higher is rounded down to 15)
+#7) "(2d8kh1, 7, 3d6kl2)kh1" = keep the highest 1 of:
+#      A) 2 x eight-sided dice rolls, keeping only the highest 1
+#      B) 7
+#      C) 3 x six-sided dice rolls, keeping the lowest 2 only
 
 
 - type_id: 497537f0-7175-4723-a3bb-288f6168286a
