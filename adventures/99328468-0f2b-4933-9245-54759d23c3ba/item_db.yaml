@@ -17,22 +17,19 @@
 
 # Dice: Must be 4-sided, 6-sided, 8-sided, 10-sided, 12-sided, or 20-sided only.  While it is technically possible to have other options, I will murder you in your sleep if you try any others.
 
-'''
-"Damage Roll" lingo examples:
-1) "3d6" = 3 x six-sided "d"ice rolls, added together
-2) "2d8 + 10" = 2 x eight-sided dice rolls, plus 10
-3) "3d10kh2*2" = 3 x ten-sided dice rolls, but "k"eep only the "h"ighest 2 values, then multiply entire thing by 2
-4) "5d20pl2e<5" = 5 x twenty-sided dice rolls, but dro"p" the "l"owest 2 rolls, and for "e"ach roll less than 5, add another roll (keeping the original roll(s) < 5)
-5) "(4d12ra1)//2" = 4 x twelve-sided dice rolls, "r"eroll and "a"dd a die (once!, and only one die, even if multiple match the subsequent given value) if it has a value of 1,
-      then divide(//, rounded to nearest integer) the entire thing("()") by 2
-6) "4d20ro1mi5 + 3d20ma15" = 4 x twenty-sided dice rolls, reroll "o"nce any(1) die with a value of 1, and all rolls (for this half of the equation only) are a "mi"nimum of 5 (anything lower is rounded up to 5),
-      then add 3 x twenty-sided dice rolls, all with a "ma"ximum of 15 (anything higher is rounded down to 15)
-7) "(2d8kh1, 7, 3d6kl2)kh1" = keep the highest 1 of:
-      A) 2 x eight-sided dice rolls, keeping only the highest 1
-      B) 7
-      C) 3 x six-sided dice rolls, keeping the lowest 2 only
-'''
-
+# "Damage Roll" lingo examples:
+# 1) "3d6" = 3 x six-sided "d"ice rolls, added together
+# 2) "2d8 + 10" = 2 x eight-sided dice rolls, plus 10
+# 3) "3d10kh2*2" = 3 x ten-sided dice rolls, but "k"eep only the "h"ighest 2 values, then multiply entire thing by 2
+# 4) "5d20pl2e<5" = 5 x twenty-sided dice rolls, but dro"p" the "l"owest 2 rolls, and for "e"ach roll less than 5, add another roll (keeping the original roll(s) < 5)
+# 5) "(4d12ra1)//2" = 4 x twelve-sided dice rolls, "r"eroll and "a"dd a die (once!, and only one die, even if multiple match the subsequent given value) if it has a value of 1,
+#       then divide(//, rounded to nearest integer) the entire thing("()") by 2
+# 6) "4d20ro1mi5 + 3d20ma15" = 4 x twenty-sided dice rolls, reroll "o"nce any(1) die with a value of 1, and all rolls (for this half of the equation only) are a "mi"nimum of 5 (anything lower is rounded up to 5),
+#       then add 3 x twenty-sided dice rolls, all with a "ma"ximum of 15 (anything higher is rounded down to 15)
+# 7) "(2d8kh1, 7, 3d6kl2)kh1" = keep the highest 1 of:
+#       A) 2 x eight-sided dice rolls, keeping only the highest 1
+#       B) 7
+#       C) 3 x six-sided dice rolls, keeping the lowest 2 only
 
 - type_id: 497537f0-7175-4723-a3bb-288f6168286a
   name: A Faded Map
@@ -88,14 +85,15 @@
   name: Excalibur
   description: Probably not the real excalibur
   damage: (5d20kh4mi5e10, 55)kh1
-  enchantment: hemorrhage V
+  enchantment:
+    name: hemorrhage V
     damage: 3d8kh2
     duration: 3 turns
   hit_modifier: 150%
   durability: 5
   rechargeable: false
   chance_on_hit:
-    - apply: "Adamantium" shrapnel - Shatters into a spray of metal shards.  %player begins to cry uncontrollably.
+    apply: \"Adamantium\" shrapnel - Shatters into a spray of metal shards.  %player begins to cry uncontrollably.
   on_break:
     damage_melee: 2d10
     converts_to:
@@ -107,20 +105,21 @@
   name: Baby Boy
   description: You shouldn't play with toys
   damage: 3d20e10kh2mi5
-  enchantment: hemorrhage III
+  enchantment:
+    name: hemorrhage III
     damage: 2d6mi3
     duration: 2 turns
   durability: 7
   class_restriction: [warrior, wizard, sapper]
   
--type_id: e42edc53-fde9-436c-a045-7be7d5cf38e2
+- type_id: e42edc53-fde9-436c-a045-7be7d5cf38e2
   name: Bo-shuriken
   description:  Better be careful with that...
   damage: 3d8mi4
-  enchantments: 2
-    enchantment: thorns
+  enchantments:
+    - enchantment: thorns
       damage_melee: 2d4
-    enchantment: hemorrhage II
+    - enchantment: hemorrhage II
       damage: 2d4
       duration: 1 turn
   durability: 3
@@ -131,12 +130,14 @@
   description:  It's broken - and freakin' sharp AF
   damage: (4d8kh3ro<3, 20, 2d10e<5)kl1
   mob_use: True
-  enchantment: Keeper Killer
+  enchantment: 
+    name: Keeper Killer
     applies_to: <final boss only>
-      effect: brings boss to, maximum, 50% max health
-      enchantment: hemophilia  # Not sure if this one is legal
-        description: cannot heal above 50% max
-      - apply: Glass shatters (1-5 damage and skip next turn to wrap hand in a bandage)
+    effect: brings boss to, maximum, 50% max health
+    enchantment: 
+      name: hemophilia  # Not sure if this one is legal
+      description: cannot heal above 50% max
+      apply: Glass shatters (1-5 damage and skip next turn to wrap hand in a bandage)
   uses: 3
   chance_on_hit:
     - apply: Glass shatters (1-5 damage and skip next turn to wrap hand in a bandage)
@@ -148,12 +149,12 @@
   description: A lightning-charged gift from the gods
   starting_item: True
   damage: (2d20ro<10, 15, 4d12kh2)kh1
-  enchantments: 3
-    enchantment: Lightning Strike II
+  enchantments:
+    - name: Lightning Strike II
       damage: 2d6
-    enchantment: Trueshot II
+    - name: Trueshot II
       hit_modifier: 200%
-    enchantment: Dead Weight
+    - name: Dead Weight
       effect: once used, cannot wield again for the rest of the encounter
   durability: 10
   on_break:
@@ -181,10 +182,12 @@
   description: An almost blinding light, descending from the heavens
   starting_item: True
   healing: 3d12mi6
-  enchantments: 2
-    enchantment: Trueshot III
+  enchantments:
+    enchantment: 
+      name: Trueshot III
       hit_modifier: 300%
-    enchantment: AOE
+    enchantment: 
+      name: AOE
       effect: multiple heroes healed
       melee_effect: Weakness II # for 2 turns, spell-strength is halved
   durability: 10

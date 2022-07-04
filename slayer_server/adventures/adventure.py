@@ -1,4 +1,6 @@
 from io import TextIOWrapper
+from slayer_server.adventures.adventer_items import AdventureItems
+from slayer_server.adventures.util import AdventureUtil
 from slayer_server.slayer_files import Slayer_Root
 import os
 import yaml
@@ -23,7 +25,11 @@ class AdvMain:
   @property
   def name(self) -> str:
     return self.parsed['name']
-
+    
+  @property
+  def narrative(self) -> str:
+    return self.parsed['narrative']
+    
   def room_list(self) -> list[Room]:
     return self.room_list
 
@@ -32,24 +38,22 @@ class Adventure:
   def __init__(self, key: str, home: str) -> None:
     self.key = key
     self.home = home
+    self.itemdb = AdventureItems(home)
 
     self.main = self.load()
 
     print('name is ' + self.main.name)
     print('description is [' + self.main.description + ']')
-    print('Contains ' + str(len(self.main.room_list)) + ' rooms')
-    for room in self.main.room_list:
-      print('  Room name is [' + room.name + ']')
-      print('    Description: ' + room.description)
-    pass
+    # print('narrative: ' + self.main.narrative)
+    # print('Contains ' + str(len(self.main.room_list)) + ' rooms')
+    # for room in self.main.room_list:
+    #   print('  Room name is [' + room.name + ']')
+    #   print('    Description: ' + room.description)
+    # pass
+    print('Keys:')
+    for k in self.main.parsed.keys():
+      print('  key=' + str(k))
 
   def load(self) -> AdvMain:
-    with self.get_config_file('main.yaml') as f:
-      main = yaml.safe_load(f)
-      return AdvMain(main)
+    return AdvMain(AdventureUtil.load_yaml(self.home, 'main.yaml'))
 
-  def get_config_filename(self, filename) -> str:
-    return os.path.join(self.home, filename)
-
-  def get_config_file(self, filename) -> TextIOWrapper:
-    return open(self.get_config_filename(filename))

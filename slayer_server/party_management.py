@@ -19,6 +19,13 @@ def get_save_path(filename):
 def party_choice():
     return render_template("party_choice.html")
 
+#
+# python calls route() passing 'party_generation'
+# - route() returns a function to be the decorator
+# - python passes the function party_generation() to the
+#   function returned by route()
+# - That decorator then associates the url with the function
+
 @SlayerApp.route("/party_generation")
 def party_generation():
     return render_template("party_generation.html", party = mock_party)

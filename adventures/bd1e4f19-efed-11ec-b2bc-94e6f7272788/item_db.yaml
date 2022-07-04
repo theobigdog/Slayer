@@ -47,7 +47,7 @@
 - type_id: cd69979a-00c5-474e-9583-ea3f72169148
   name: broken handle
   description: the handle remains of a broken pick
-  equipable: true:
+  equipable: true
   damage: 1d1
   hit_modifier: -25%  # not as bad as a broken pick!
   durability: 2
