@@ -1,58 +1,58 @@
-from slayer_server.adventures.items import AdventureItems
-from slayer_server.adventures.mobs import AdventureMobs
+from cgitb import lookup
+from slayer_server.adventures.items import AdventureItemDB, ItemRef
+from slayer_server.adventures.mobs import AdventureMobDB
 from slayer_server.adventures.util import AdventureUtil
 from slayer_server.slayer_files import Slayer_Root
 
-class Room:
-  def __init__(self, d) -> None:
-    self.__dict__ = d
 
+class AdventureRoom:
+  def __init__(self, raw: dict, item_db: AdventureItemDB) -> None:
+    self.name = AdventureUtil.get_str(raw, 'name', raise_on_none=True)
+    print('load room = [' + self.name + ']')
+    self.description = AdventureUtil.get_str(raw, 'description')
 
-class AdvMain:
-  def __init__(self, d) -> None:
-    self.parsed = d
-    self.room_list = []
-    for room in d['rooms']:
-      self.room_list.append(Room(room))
+    self.load_items(raw, item_db)
     pass
 
-  @property
-  def description(self) -> str:
-    return self.parsed['description']
+  def load_items(self, raw: dict, item_db: AdventureItemDB) -> None:
+    self.items = []
+    for x in AdventureUtil.get_list(raw, 'items'):
+      ref = ItemRef(x, item_db)
+      self.items.append(ref)
+      print('  contains item ' + str(ref))
 
-  @property
-  def name(self) -> str:
-    return self.parsed['name']
-    
-  @property
-  def narrative(self) -> str:
-    return self.parsed['narrative']
-    
-  def room_list(self) -> list[Room]:
-    return self.room_list
 
 
 class Adventure:
   def __init__(self, key: str, home: str) -> None:
     self.key = key
     self.home = home
-    self.itemdb = AdventureItems(home)
-    self.mob_db = AdventureMobs(home)
+    self.item_db = AdventureItemDB(home)
+    self.mob_db = AdventureMobDB(home)
 
-    self.main = self.load()
+    raw = AdventureUtil.load_yaml(self.home, 'main.yaml')
+    self.name = AdventureUtil.get_str(raw, 'name')
+    self.description = AdventureUtil.get_str(raw, 'description', '')
+    self.narrative = AdventureUtil.get_str(raw, 'narrative', '')
 
-    print('name is ' + self.main.name)
-    print('description is [' + self.main.description + ']')
-    # print('narrative: ' + self.main.narrative)
-    # print('Contains ' + str(len(self.main.room_list)) + ' rooms')
-    # for room in self.main.room_list:
-    #   print('  Room name is [' + room.name + ']')
-    #   print('    Description: ' + room.description)
-    # pass
+    print('name is ' + self.name)
+    self.load_items(raw)
+    self.load_rooms(raw)
+
+    print('description is [' + self.description + ']')
     print('Keys:')
-    for k in self.main.parsed.keys():
+    for k in raw.keys():
       print('  key=' + str(k))
 
-  def load(self) -> AdvMain:
-    return AdvMain(AdventureUtil.load_yaml(self.home, 'main.yaml'))
+  def load_items(self, raw: dict) -> None:
+    self.starting_items = []
+    for x in  AdventureUtil.get_list(raw, 'items'):
+      ref = ItemRef(x, self.item_db)
+      self.starting_items.append(ref)
+      print('Adventure contains ' + str(ref))
 
+  def load_rooms(self, raw: dict) -> None:
+    self.rooms = []
+    for x in AdventureUtil.get_list(raw, 'rooms'):
+      self.rooms.append(AdventureRoom(x, self.item_db))
+    pass
