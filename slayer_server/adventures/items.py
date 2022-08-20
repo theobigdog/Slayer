@@ -21,14 +21,14 @@ class AdventureItemDB:
   def __init__(self, home:str) -> None:
     raw = AdventureUtil.load_yaml(home, 'item_db.yaml')
 
-    self.db = {}
+    self.db = dict[str,AdventureItem]()
     if not isinstance(raw, list):
       raise LookupError('Item database item_db.yaml must contain a list')
 
-    print('items')
+    print('  items')
     for entry in raw:
       item = AdventureItem(entry)
-      print(item)
+      print('    ' + str(item))
       if item.item_id in self.db.keys():
         raise LookupError('Duplicate item ID ' + item.item_id)
       self.db[item.item_id] = item

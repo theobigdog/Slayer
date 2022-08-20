@@ -70,3 +70,6 @@ rooms:
     events:
       - name: Sudden Death!
         action: party wipe
+
+  - name: Rickety Ladder
+    description: The ladder creaks alarmingly

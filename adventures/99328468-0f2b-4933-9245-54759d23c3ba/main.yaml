@@ -81,3 +81,9 @@ rooms:
     events:
       - name: Sudden Death!
         action: party wipe
+
+  - name: Hidden Corridor
+    description: You are in a narrow corridor...
+
+  - name: Rickety Ladder
+    description: You think you may get splinters from this thing...
