@@ -1,4 +1,3 @@
-from cgitb import lookup
 from slayer_server.adventures.items import AdventureItemDB, ItemRef
 from slayer_server.adventures.mobs import AdventureMobDB, MobRef
 from slayer_server.adventures.util import AdventureUtil
