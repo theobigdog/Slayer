@@ -1,0 +1,120 @@
+
+- type_id: cb9576a2-b64d-44cd-8fbe-dc59bb578da2
+  name: Bandage
+  can_wield:
+    - Warrior
+    - Shifter
+    - Battle Mage
+    - Hunter
+    - Wizard
+    - Sapper
+    - Cleric
+  melee_ranged: melee
+  source: starting
+  special_attack: false
+  used: false
+  low: -5
+  high: -10
+
+- type_id: e2b35da9-9253-452a-9d0e-c3cbc8cc5c6f
+  name: "Bastard Sword",
+  can_wield:
+    - Warrior
+  melee_ranged: melee
+  source: starting
+  special_attack: false
+  used: false
+  low: 4
+  high: 9
+
+- type_id: 8d11b2a1-1c68-4c5d-9aa0-e420d12389d4
+  name: Battle-Axe
+  can_wield:
+    - Warrior
+  melee_ranged: melee
+  source: starting
+  special_attack: false
+  used: false
+  low: 2
+  high: 10
+
+- type_id: 28891ed2-5c0b-48d9-b26e-8459027bde4e
+  name: Bless
+  can_wield:
+    - Cleric
+  melee_ranged: ranged
+  source: starting
+  special_attack: false
+  used: false
+  low: -5
+  high: -10
+
+- type_id: ed3e4269-301c-435a-9b5e-3aa7927f7bbc
+  name: Fist
+  can_wield:
+    - Warrior
+    - Shifter
+    - Battle Mage
+    - Hunter
+    - Wizard
+    - Sapper
+    - Cleric
+
+  melee_ranged: melee
+  source: starting
+  special_attack: false
+  used: false
+  low: 1
+  high: 3
+
+- type_id: c89b5872-55aa-47d1-8fa0-94bf5f314636
+  name": Hands of Apollo
+  can_wield:
+    - Cleric
+  melee_ranged: ranged
+  source: starting
+  special_attack: true
+  used: false
+  low: -20
+  high: -30
+
+- type_id: 32c96773-259c-46fe-8b21-2df4aafa040f
+  name: Hippocrate's Smile
+  can_wield:
+    - Cleric
+  melee_ranged: ranged
+  source: starting
+  special_attack: false
+  used: false
+  low: -4
+  high: -12
+
+- type_id: 29b03194-4077-495a-9912-0be4df27e90f
+  name: Token of the Wise Wizard
+  can_wield:
+    - Warrior
+    - Shifter
+    - Battle Mage
+    - Hunter
+    - Wizard
+    - Sapper
+    - Cleric
+  melee_ranged: melee
+  source: starting
+  special_attack: false
+  used: false
+  low: 0
+  high: 0
+
+- type_id: 2fbafdcc-1aa5-4108-80d3-5e1b27250335
+  name: Thor's Hammer
+  can_wield:
+    - Warrior
+  melee_ranged: ranged
+  source: starting
+  special_attack: true
+  used: false,
+  low: 20
+  high: 25
+
+

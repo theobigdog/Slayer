@@ -1,0 +1,85 @@
+
+name: Ruxpin
+members:
+  - name: Djub-Djub the Thoughtless Virgin
+    hero_class: Warrior
+    starting_health: 53
+    health: 53
+    inv_stolen_items: []
+    inv_items:
+      - type_id: ed3e4269-301c-435a-9b5e-3aa7927f7bbc
+        count: 1
+
+      - type_id: cb9576a2-b64d-44cd-8fbe-dc59bb578da2
+        count: 5
+
+      - type_id: 29b03194-4077-495a-9912-0be4df27e90f
+        count: 1
+      
+      - type_id: 2fbafdcc-1aa5-4108-80d3-5e1b27250335
+        count: 1
+
+      - type_id: e2b35da9-9253-452a-9d0e-c3cbc8cc5c6f
+        count: 1
+
+      - type_id: 8d11b2a1-1c68-4c5d-9aa0-e420d12389d4
+        count: 1
+    is_ranged: false
+    crit_chance: 25
+    crit_mult: 3.25
+    low_miss: 25
+    high_miss: 100
+    luck: 7
+    expertise: 5
+    toughness: 20
+    dodge: 7
+    parry: 7
+    fear: 18
+    heal_chance: 10
+    aoe_heal_chance: 0
+    times_ran_away: 0
+    ran_away: false
+    is_dead: false
+    killer: ""
+  
+  name: Harry Potter the Slippery Monkey
+    hero_class: Cleric
+    starting_health: 30
+    health: 30
+    inv_stolen_items: []
+    inv_items:
+      - type_id: ed3e4269-301c-435a-9b5e-3aa7927f7bbc
+        count: 1
+
+      - type_id: cb9576a2-b64d-44cd-8fbe-dc59bb578da2
+        count: 1
+
+      - type_id: 29b03194-4077-495a-9912-0be4df27e90f
+        count: 1
+
+      - type_id: c89b5872-55aa-47d1-8fa0-94bf5f314636
+        count: 1
+
+      - type_id: 28891ed2-5c0b-48d9-b26e-8459027bde4e
+        count: 1
+
+      - type_id: 32c96773-259c-46fe-8b21-2df4aafa040f
+        count: 1
+
+    is_ranged: true
+    crit_chance: 30
+    crit_mult: 2.0
+    low_miss: 1
+    high_miss: 90
+    luck: 15
+    expertise: 50
+    toughness: 7
+    dodge: 10
+    parry: 5
+    fear: 20
+    heal_chance: 19
+    aoe_heal_chance: 5
+    times_ran_away: 0
+    ran_away: false
+    is_dead: false
+    killer: ""
