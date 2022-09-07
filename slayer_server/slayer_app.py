@@ -1,6 +1,10 @@
 
 from flask import Flask, redirect, url_for, escape, render_template, flash, request
 from flask_login import LoginManager, login_required
+
+from slayer_server.items.item_manager import ItemManager
+
+from .party.party_manager import PartyManager
 from .user_manager import UserManager
 from .slayer_files import Slayer_Root
 from .adventures.adventure_manager import AdventureManager
@@ -13,7 +17,9 @@ Slayer_Version = 3
 
 SlayerApp = Flask(__name__, static_url_path = '', static_folder = Slayer_Root + '/static_html', template_folder = Slayer_Root + '/templates')
 SlayerApp.config['TEMPLATES_AUTO_RELOAD'] = True
-AdventureManager()
+SLayerItemDB = ItemManager()
+PartyManager()
+#AdventureManager()
 
 SlayerApp.secret_key = 'shhhhh this is a secret'
 

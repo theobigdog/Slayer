@@ -42,7 +42,7 @@ members:
     is_dead: false
     killer: ""
   
-  name: Harry Potter the Slippery Monkey
+  - name: Harry Potter the Slippery Monkey
     hero_class: Cleric
     starting_health: 30
     health: 30

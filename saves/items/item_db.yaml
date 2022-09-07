@@ -17,7 +17,7 @@
   high: -10
 
 - type_id: e2b35da9-9253-452a-9d0e-c3cbc8cc5c6f
-  name: "Bastard Sword",
+  name: "Bastard Sword"
   can_wield:
     - Warrior
   melee_ranged: melee
