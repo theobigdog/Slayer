@@ -17,8 +17,8 @@ Slayer_Version = 3
 
 SlayerApp = Flask(__name__, static_url_path = '', static_folder = Slayer_Root + '/static_html', template_folder = Slayer_Root + '/templates')
 SlayerApp.config['TEMPLATES_AUTO_RELOAD'] = True
-SLayerItemDB = ItemManager()
-PartyManager()
+SlayerItemDB = ItemManager()
+PartyManager(SlayerItemDB)
 #AdventureManager()
 
 SlayerApp.secret_key = 'shhhhh this is a secret'

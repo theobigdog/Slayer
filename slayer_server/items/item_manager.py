@@ -24,3 +24,7 @@ class ItemManager:
       if item.item_id in self.item_dict.keys():
         raise LookupError('Duplicate item ID ' + item.item_id)
       self.item_dict[item.item_id] = item
+
+  def lookup(self, id) -> AdventureItem:
+    type_id = AdventureUtil.get_type_id(id)
+    return None if type_id == None else self.item_dict.get(type_id)
