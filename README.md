@@ -20,7 +20,7 @@ back. **M** mutes; click the bar at the top right to set the volume.
 
 ## What's new since 2021 (Nov 2026)
 
-- **A game window** that looks like an old green-screen computer, booting up BUBBA-DOS, with ASCII-art dragons,
+- **A game window** that looks like an old green-screen computer, booting up BUBBA-DOS, with Ted's own dragon drawings as glowing lines,
   health bars, floating damage numbers, and the screen shaking and flashing when things hurt.
 - **Its own 8-bit soundtrack and sound effects**, all original: a march for the title, a drunk waltz in
   Trogdor's cave, a bouncy creep for Skippy, a slow rumble for The Ancient, and fight music.
@@ -45,6 +45,9 @@ back. **M** mutes; click the bar at the top right to set the volume.
   `game/sound.py` plays the music, `game/art.py` holds the ASCII art (edit freely).
 - `tools/bot_test.py`: plays thousands of games with a random bot and a sensible one, checks nothing breaks, and
   prints win rates.
+- `tools/make_dragons.py`: turns Ted's dragon drawings (`assets/drawings/`) into the glowing line art the window
+  shows (`assets/dragons/`). Draw on light paper, save as trogdor/skippy/ancient .png or .jpg, run it. A dragon
+  with no drawing falls back to the ASCII art.
 - `tools/make_sounds.py`: writes the music and sound effects (`pip install numpy` first). The songs are written
   as notes in that file, so they're easy to change.
 

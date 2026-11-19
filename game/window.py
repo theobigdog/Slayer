@@ -95,6 +95,7 @@ class Window:
         self.cw, self.ch = self.font.size('M')[0], self.font.get_linesize() + 2
         self.clock = pygame.time.Clock()
         self.ink = {}  # (text, color, font) -> rendered surface
+        self.pictures = {}  # (art, color) -> (lines, glow), from assets/dragons/
         self.scanlines = self.make_scanlines()
         self.vignette = self.make_vignette()
         self.reset_text()
@@ -572,18 +573,46 @@ class Window:
         color = DRAGON_COLORS.get(dragon.color, GREEN)
         if dragon.enraged:
             color = RED
-        art_rows = art.DRAGONS[dragon.art].strip('\n').splitlines()
         ax = 500
         bob = math.sin(self.now * (5 if dragon.winding_up else 1.6)) * (3 if dragon.alive else 0)
         hit = any(n in ('shake', 'flash_white') and w is dragon and self.now - s < EFFECT_TIME for n, w, s in self.effects)
-        for i, row in enumerate(art_rows):
-            jitter = random.randint(-3, 3) if hit else 0
-            self.text(row, color if dragon.alive else FAINT, (ax + jitter, TOP + 16 + i * 19 + bob), self.small)
+        picture = self.picture(dragon.art, color if dragon.alive else FAINT)
+        if picture:  # Ted's drawing, as glowing lines
+            lines, glow = picture
+            jitter = random.randint(-4, 4) if hit else 0
+            spot = pygame.Rect(ax, TOP + 12, W - MARGIN - 300 - ax - 10, BATTLE_H - 30)
+            pos = (spot.centerx - lines.get_width() // 2 + jitter, spot.centery - lines.get_height() // 2 + bob)
+            if dragon.alive:
+                c.blit(glow, pos, special_flags=pygame.BLEND_ADD)
+            c.blit(lines, pos)
+        else:
+            for i, row in enumerate(art.DRAGONS[dragon.art].strip('\n').splitlines()):
+                jitter = random.randint(-3, 3) if hit else 0
+                self.text(row, color if dragon.alive else FAINT, (ax + jitter, TOP + 16 + i * 19 + bob), self.small)
         nx = W - MARGIN - 300
         self.text('DRAGON', DIM, (nx, TOP + 22), self.small)
         self.text(dragon.name, color, (nx, TOP + 40), self.big if len(dragon.name) < 16 else self.font)
         self.hp_bar(dragon, nx, TOP + 80)
         self.status_line(dragon, nx, TOP + 114)
+
+    def picture(self, name, color):
+        """A dragon's drawing (assets/dragons/<name>.png, made by tools/make_dragons.py) in her color, with a glow."""
+        key = (name, color)
+        if key not in self.pictures:
+            self.pictures[key] = None
+            path = ROOT / 'assets' / 'dragons' / f'{name}.png'
+            if path.exists():
+                drawing = pygame.image.load(str(path)).convert_alpha()
+                w, h = drawing.get_size()
+                fit = min((W - MARGIN - 300 - 510) / w, (BATTLE_H - 30) / h)
+                lines = pygame.transform.smoothscale(drawing, (round(w * fit), round(h * fit)))
+                lines.fill((*color, 255), special_flags=pygame.BLEND_RGBA_MULT)
+                on_black = pygame.Surface(lines.get_size())  # the glow is added on, so it's drawn on black
+                on_black.blit(lines, (0, 0))
+                small = pygame.transform.smoothscale(on_black, (max(1, lines.get_width() // 6), max(1, lines.get_height() // 6)))
+                glow = pygame.transform.smoothscale(small, lines.get_size())
+                self.pictures[key] = (lines, glow)
+        return self.pictures[key]
 
     def hp_bar(self, who, x, y):
         cells_n = 16
