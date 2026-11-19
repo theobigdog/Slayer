@@ -15,6 +15,9 @@ python main.py                 # the game window
 python play_in_terminal.py     # the original command-prompt way (nothing to install)
 ```
 
+**No Python?** `python tools/build_exe.py` (after `pip install pyinstaller`) makes `dist/Slayer.exe`, one file that
+runs on any Windows PC. Windows may warn about it the first time ("More info" → "Run anyway"), since it isn't signed.
+
 In the window: click or press Enter to keep reading, click a choice or press its number, mouse wheel to scroll
 back. **M** mutes; click the bar at the top right to set the volume.
 
@@ -48,6 +51,7 @@ back. **M** mutes; click the bar at the top right to set the volume.
 - `tools/make_dragons.py`: turns Ted's dragon drawings (`assets/drawings/`) into the glowing line art the window
   shows (`assets/dragons/`). Draw on light paper, save as trogdor/skippy/ancient .png or .jpg, run it. A dragon
   with no drawing falls back to the ASCII art.
+- `tools/build_exe.py`: packs the whole game into `dist/Slayer.exe`.
 - `tools/make_sounds.py`: writes the music and sound effects (`pip install numpy` first). The songs are written
   as notes in that file, so they're easy to change.
 

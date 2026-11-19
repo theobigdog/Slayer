@@ -13,6 +13,7 @@ import math
 import random
 import re
 import traceback
+import sys
 from pathlib import Path
 
 import pygame
@@ -22,7 +23,11 @@ import sound
 import ui
 
 W, H = 1280, 720
-ROOT = Path(__file__).resolve().parent.parent
+if getattr(sys, 'frozen', False):  # packed into Slayer.exe: files unpack to a temp folder, settings go by the exe
+    ROOT = Path(sys._MEIPASS)
+    HOME = Path(sys.executable).resolve().parent
+else:
+    ROOT = HOME = Path(__file__).resolve().parent.parent
 FONT_FILE = ROOT / 'assets' / 'fonts' / 'DejaVuSansMono-Bold.ttf'
 
 # The green screen.
@@ -342,7 +347,7 @@ class Window:
         text = ''.join(traceback.format_exception(error))
         print(text)
         try:
-            (ROOT / 'crash_log.txt').write_text(text, encoding='utf-8')
+            (HOME / 'crash_log.txt').write_text(text, encoding='utf-8')
         except Exception:
             pass
         self.reset_text()

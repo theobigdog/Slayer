@@ -7,14 +7,19 @@ The files are made by tools/make_sounds.py: songs in assets/music/, effects in a
     volume / set_volume(0.5) / toggle()   remembered in settings.txt next to the game
 If anything about sound fails (no speakers, a missing file), the game carries on in silence.
 """
+import sys
 from pathlib import Path
 
 import pygame
 
-ROOT = Path(__file__).resolve().parent.parent
+if getattr(sys, 'frozen', False):  # packed into Slayer.exe: files unpack to a temp folder, settings go by the exe
+    ROOT = Path(sys._MEIPASS)
+    HOME = Path(sys.executable).resolve().parent
+else:
+    ROOT = HOME = Path(__file__).resolve().parent.parent
 MUSIC = ROOT / 'assets' / 'music'
 SOUNDS = ROOT / 'assets' / 'sounds'
-SETTINGS = ROOT / 'settings.txt'
+SETTINGS = HOME / 'settings.txt'
 DEFAULT_VOLUME = 0.20
 EFFECT_BOOST = {'type': 0.35, 'select': 0.8}  # the typewriter's tick stays very quiet
 
