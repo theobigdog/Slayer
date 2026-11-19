@@ -267,3 +267,92 @@ ENDINGS = {
 NAMES_1 = ["Smug", "Conceited", "Silly", "Happy", "Sad", "Amorphic", "Petty", "Pretty", "Largish", "Smelly", "Farty", "Tender", "Kind", "Jerky", "Angry", "Tumescent", "Ridiculous", "Stupid", "Skanky", "Master", "Gassy", "Broken"]
 NAMES_2 = ["Pussy-Willow", "Monkey", "Frog", "Turtle", "Fish", "Dog", "Tapir", "Beaver", "Kitten", "Child", "Worm", "Gas", "Tyrant", "Giraffe", "Fungus", "Crab", "Fart", "Smegma", "Warrior", "Battle-Cat", "Counselor", "Magician", "Bunghole", "Baby", "Doctor", "Rock"]
 NAMES_3 = ["Smurf", "Mouth", "Lips", "Fungus", "Womanizer", "Grass", "Smegma", "Clutz", "Bunghole", "Kitten", "Baby", "Doctor", "Snarfblat", "Hunter", "Eater", "Sniffer", "Spanker", "Robot", "Trash-can", "Ingestor", "Hater", "Player"]
+
+
+# =================================================================================================================
+# DRAFTS BY CLAUDE (Nov 19, 2026) FOR TED TO REWRITE
+# Everything below is new for the upgrade: the dragons' tricks, ducking, statuses, loot and the run from one
+# dragon to the next. Rewrite anything. Keep the {names} in curly brackets where you want them filled in.
+# =================================================================================================================
+
+TITLE_SUBTITLE = "the classic.  now with more ways to die."
+
+DUCK_LABEL = "Duck and cover (no attack, but much harder to hit)"
+DRINK_LABELS = {"Trogdor's Mead": "heals 10-15, gets you drunk", "Healing Draught": "heals 15-22"}
+
+# --- ducking ---
+DUCKS = ["You throw yourself flat on the cave floor and cover your head.  Very brave.  Very dignified.",
+         "You dive behind a rock.  It's a small rock.  Most of you is still showing.",
+         "You curl up into a ball and hope for the best.  Your mother would be so proud."]
+DUCKED_THE_BIG_ONE = "The blast roars right over your head.  It only singes your man-bun, for {damage}."
+
+# --- drinking ---
+DRINK_MEAD = "You chug a bottle of Trogdor's Mead.  It burns going down.  You feel GREAT.  You heal for {heal}, and you're a little drunk."
+DRINK_DRAUGHT = "You gulp down the Healing Draught.  It tastes like feet.  You heal for {heal}."
+
+# --- statuses ---
+STATUS_WORDS = {'burning': 'ON FIRE', 'drunk': 'drunk', 'terrified': 'terrified', 'damp': 'damp'}
+CATCH_FIRE = "Your clothes catch fire.  You are now, technically, a torch."
+STILL_BURNING = "You're still on fire, for {damage}.  Stop, drop and roll?  No time!"
+FIRE_OUT = "The fire on your back finally goes out.  You smell like a campfire.  And pee."
+TERRIFIED = "Your hands won't stop shaking.  Your next few swings are going to be... not great."
+DAMP = "(Your pants are now officially damp.  That's not going away.)"
+NOT_TERRIFIED = "You pull yourself together.  Mostly."
+
+# --- Trogdor: still drunk, and BURNINATING ---
+HICCUP = ["{dragon} hiccups so hard she falls over, and spends her whole turn trying to get back up.",
+          "{dragon} lets out an enormous belch, giggles at it, and forgets what she was doing.",
+          "{dragon} sways, squints at you, and swipes at the empty air two feet to your left."]
+HICCUP_FIRE = "{dragon} hiccups out a little fireball.  Right into her own beefy arm, for {damage}.  \"OW.  Who did that?\""
+TROGDOR_WINDUP = "{dragon} sucks in a huge breath, cheeks puffing out like a bullfrog.  Something big is coming."
+TROGDOR_BIG = "\"BURNINATE!!!\"  {dragon} spews a river of fire across the whole cave, for {damage}."
+
+# --- Skippy: reads your mind, and puffs up ---
+MIND_READ = "\"I KNEW you'd do that!\" {dragon} giggles, reading your mind and dancing right out of the way."
+PUFF_UP = "{dragon} puffs out her chest and doubles in size AGAIN.  She's done playing.  Her hits are going to hurt a lot more now."
+
+# --- The Ancient: armored, breathes an inferno, gets FURIOUS ---
+ARMOR = "Her ancient scales soak up most of it."
+PIERCE = "Your {weapon} finds a gap between her scales!"
+ANCIENT_WINDUP = "{dragon} draws a breath so deep that the coins on the floor slide toward her.  Her throat glows white-hot."
+ANCIENT_BIG = "{dragon} unleashes an INFERNO.  The whole cave turns white, for {damage}."
+ENRAGE = "The arrows stuck in her hide start to glow red-hot.  {dragon} is FURIOUS."
+
+# --- winning a fight in the middle of a run ---
+YOU_WON = "[green]You have slain {dragon}!  You are victorious![/]"
+PICK_UP_WEAPONS = "You pick your weapons back up off the cave floor.  Some of them have pee on them."
+GROW = "Something about killing a dragon makes you feel tougher.  Max health +{gain}, and you're patched up to full."
+HOARD = ["You dig through {dragon}'s hoard.  Most of it is junk, half-melted, or covered in something sticky.",
+         "Three things catch your eye.  You can only carry one more thing."]
+PICK_LOOT = "What do you take?  "
+LOOT_LABELS = {
+    "Trogdor's Mead": "Trogdor's Mead x2 (heals 10-15, gets you drunk)",
+    'Peasant Pitchfork': "Peasant Pitchfork (2-9 damage, finds the gaps in armor)",
+    'Beefy-Arm Gauntlet': "Beefy-Arm Gauntlet (+2 damage with every weapon)",
+    'Whetstone': "Whetstone (+1 damage with every weapon)",
+    'Spare Sword': "Spare Sword (in case the last one gets shattered)",
+    'Femur Club': "Femur Club (4-8 damage, previous owner unknown)",
+    "Skippy's Tiara": "Skippy's Tiara (you dodge more often; it's very sparkly)",
+    'Healing Draught': "Healing Draught x2 (heals 15-22)",
+}
+TOOK_LOOT = "You take the {item}.  Good choice.  Probably."
+ONWARD = "So:  home, or deeper?  "
+HOME_OR_DEEPER = ["Head home, a hero", "Press on, deeper into the Dragon Cliffs"]
+
+BRIDGE_TO_SKIPPY = [
+    ["Behind Trogdor's pile of empty mead barrels, a crack in the wall opens into a freshly-dug tunnel.",
+     "It smells like old bones and little-kid sweat.  You hear giggling somewhere far ahead.",
+     '"Oh good," you mutter.  "Another one."'],
+]
+BRIDGE_TO_TROGDOR = [
+    ["Past Skippy's bone pile, a narrow ledge winds out along the cliffside, over a drop with no bottom in sight.",
+     "You smell mead.  Lots of mead.  And something is snoring loud enough to shake pebbles off the cliff.",
+     '"Oh good," you mutter.  "Another one."'],
+]
+BRIDGE_TO_ANCIENT = [
+    ["Two dragons down.  You head back to the fork, feeling pretty good about yourself.  Smug, even.",
+     "Then you notice it:  a chunk of the floor that just doesn't seem right."],
+    ["Under a mat of old cobwebs, there's a third tunnel, dropping straight down into the dark.",
+     "Warm air breathes up out of it.  In.  Out.  In.  Out.",
+     '"That\'s not wind," you whisper.  You climb down anyway, because of course you do.'],
+]
