@@ -1,9 +1,0 @@
-# pip install -r requirements.txt
-
-# slayer requirements:
-Flask
-flask-login
-#Flask-Session
-Pandas
-
-namegenerator
