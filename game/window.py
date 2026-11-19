@@ -472,9 +472,13 @@ class Window:
         self.text(' SLAYER.EXE  (the classic)', BG, (8, 4))
         on = sound.volume > 0
         x = self.volume_rect.x
-        self.text('♪' if on else '♪x', BG, (x + 2, 4))
+        # a dark inset on the green bar, so the volume control stands out
+        pygame.draw.rect(self.canvas, BG, self.volume_rect.inflate(6, 2), border_radius=4)
+        pygame.draw.rect(self.canvas, BRIGHT if on else RED, self.volume_rect.inflate(6, 2), 1, border_radius=4)
+        self.text('♪' if on else '♪x', BRIGHT if on else RED, (x + 2, 4))
         bars = int(round(sound.volume * 10))
-        self.text('█' * bars + '░' * (10 - bars), BG, (x + 30, 4))
+        self.text('█' * bars, GREEN, (x + 30, 4))
+        self.text('░' * (10 - bars), DIM, (x + 30 + bars * self.cw, 4))
         if self.battle:
             hero, dragon = self.battle
             self.text(f'{hero.name}  vs  {dragon.name}', BG, (W // 2 - len(f'{hero.name}  vs  {dragon.name}') * self.cw // 2, 4))

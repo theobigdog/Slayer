@@ -74,7 +74,7 @@ DRAGON_INTROS = {
          'Clearly still groggy, she rumbles, "Hmmmm what the...." She begins to stir when she sees you.  "Hi," she says.  "You need something?  Can\'t you see, I\'m trying to get some rest?"',
          '"I\'m dead-tired and hung-over as shit" she mumbles, rubbing at her eyes with her clawed arm, "so I hope this is important."',
          '"Are you serious?" you think to yourself.  "Are you the fierce beast who just attacked my neighbors, The Rodents?"',
-         '"Hmmmm.... I guess so," she mumbles.  "I don\'t much remember last night.  I was drunk as $hit."'],
+         '"Hmmmm.... I guess so," she mumbles.  "I don\'t much remember last night.  I was drunk as shit."'],
         ['Well this really chaps your hide.  She slaughtered your neighbors and friends, just because she got drunk?  How does a dragon get drunk, anyway?  You thought they were magical.',
          '"Prepare to defend yourself, for I am {hero}, and I am here for the vengeance of my town, which you have repeatedly ravaged."',
          '"Are you serious?  Do we have to do this right now?  I\'m very tired, and very sorry, ok?" she speaks, as if this will assuage anything.',

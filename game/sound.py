@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parent.parent
 MUSIC = ROOT / 'assets' / 'music'
 SOUNDS = ROOT / 'assets' / 'sounds'
 SETTINGS = ROOT / 'settings.txt'
-DEFAULT_VOLUME = 0.35
+DEFAULT_VOLUME = 0.20
 EFFECT_BOOST = {'type': 0.35, 'select': 0.8}  # the typewriter's tick stays very quiet
 
 _current = None
