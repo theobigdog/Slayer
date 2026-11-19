@@ -607,6 +607,13 @@ class Window:
                 fit = min((W - MARGIN - 300 - 510) / w, (BATTLE_H - 30) / h)
                 lines = pygame.transform.smoothscale(drawing, (round(w * fit), round(h * fit)))
                 lines.fill((*color, 255), special_flags=pygame.BLEND_RGBA_MULT)
+                # fade the edges, so a drawing that runs off the page melts into the dark instead of stopping dead
+                fade = pygame.Surface((8, 8), pygame.SRCALPHA)
+                for fx in range(8):
+                    for fy in range(8):
+                        edge = min(fx, 7 - fx, fy, 7 - fy)
+                        fade.set_at((fx, fy), (255, 255, 255, (60, 200, 255, 255)[edge]))
+                lines.blit(pygame.transform.smoothscale(fade, lines.get_size()), (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 on_black = pygame.Surface(lines.get_size())  # the glow is added on, so it's drawn on black
                 on_black.blit(lines, (0, 0))
                 small = pygame.transform.smoothscale(on_black, (max(1, lines.get_width() // 6), max(1, lines.get_height() // 6)))

@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DRAWINGS = ROOT / 'assets' / 'drawings'
 OUT = ROOT / 'assets' / 'dragons'
 HEIGHT = 540            # saved twice the size it's shown, so it stays sharp
-FACING = {'trogdor': 'right', 'skippy': 'right', 'ancient': 'right'}
-ERASE = {'trogdor': [(400, 390, 708, 600), (670, 190, 708, 240)]}   # the title, and the pencil tip
+FACING = {'trogdor': 'right', 'skippy': 'left', 'ancient': 'left'}
+ERASE = {}
 
 
 def ink(path: Path, erase) -> np.ndarray:
